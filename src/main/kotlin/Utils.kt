@@ -2,11 +2,12 @@ import java.io.File
 import java.math.BigInteger
 import java.security.MessageDigest
 
+class Utils{}
 /**
  * Reads lines from the given input txt file.
  */
-fun readInput(name: String) = File("src", "$name.txt").readLines()
-fun readInputToInt(name: String) = File("src", "$name.txt").readLines().map { it.toInt() }
+fun readInput(name: String) = Utils::class.java.classLoader.getResource("$name.txt")!!.readText().lines()
+fun readInputToInt(name: String) = Utils::class.java.classLoader.getResource("$name.txt")!!.readText().lines().map{ it.toInt() }
 
 /**
  * Converts string to md5 hash.

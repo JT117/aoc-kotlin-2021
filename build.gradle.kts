@@ -6,10 +6,16 @@ repositories {
     mavenCentral()
 }
 
+dependencies {
+    testImplementation(platform("org.junit:junit-bom:5.8.2"))
+    testImplementation("org.junit.jupiter:junit-jupiter")
+}
+
+
 tasks {
     sourceSets {
         main {
-            java.srcDirs("src")
+            java.srcDirs("src/main")
         }
     }
 
@@ -17,3 +23,17 @@ tasks {
         gradleVersion = "7.3"
     }
 }
+
+
+tasks.test {
+    useJUnitPlatform()
+    testLogging {
+        events("passed", "skipped", "failed")
+    }
+}
+
+// config JVM target to 1.8 for kotlin compilation tasks
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
+    kotlinOptions.jvmTarget = "1.8"
+}
+

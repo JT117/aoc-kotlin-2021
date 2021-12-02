@@ -1,4 +1,16 @@
 fun main() {
+
+    val input = readInputToInt("Day01")
+    val day01 = Day01()
+    val part1Result = day01.part1(input)
+    val part2Result = day01.part2(input)
+
+    println("############################ ")
+    println(" Part 1 result: $part1Result")
+    println(" Part 2 result: $part2Result")
+}
+
+class Day01 {
     /**
      * Day 01 - Part 1
      * Parse the list and count the number of time the n+1 number is greater than n
@@ -23,21 +35,9 @@ fun main() {
         val sums = mutableListOf<Int>()
 
         input.windowed(size = 3, step = 1) { (a, b, c) ->
-            sums.add(a+b+c)
+            sums.add(a + b + c)
         }
 
         return part1(sums)
     }
-
-    // test if implementation meets criteria from the description, like:
-    val testInput = readInputToInt("Day01_test")
-    check(part1(testInput) == 7)
-
-    val input = readInputToInt("Day01")
-    val part1Result = part1(input)
-    val part2Result = part2(input)
-
-    println(" #########################  ")
-    println(" Part 1 result: $part1Result")
-    println(" Part 2 result: $part2Result")
 }
